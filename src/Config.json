@@ -1,0 +1,34 @@
+{
+	"name": "Memos",
+	"identifier": "com.beffiy.popclip.extension.usememos",
+	"icon": "memos.png",
+	"entitlements": ["network"],
+	"captureHtml": true,
+	"title": {
+		"en": "send to Memos",
+		"zh": "发送至memos"
+	},
+	"javascript file": "memos.js",
+	"Options": [
+		{
+			"identifier": "site",
+			"label": {
+				"en": "Memos Url",
+				"zh": "Memos地址"
+			},
+			"description": {
+				"en": "https://www.yourmemo.net",
+				"zh": "https://www.yourmemo.net"
+			},
+			"type": "string"
+		},
+		{
+			"identifier": "access_token",
+			"type": "string",
+			"label": {
+				"en": "Access Token",
+				"zh": "Access Token"
+			}
+		}
+	]
+}
