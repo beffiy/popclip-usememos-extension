@@ -11,16 +11,18 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '16'  # 如果需要 Node.js 环境
+    # - name: Set up Node.js
+    #   uses: actions/setup-node@v3
+    #   with:
+    #     node-version: '20'  # 如果需要 Node.js 环境
 
     - name: Install Zip
       run: sudo apt-get install zip -y
 
     - name: Compress src folder
-      run: zip -r usememos.popclipext src
+      run: | 
+        mv src usememos.popclipext
+        zip -r usememos.popclipextz usememos.popclipext
 
     - name: Get current date and time
       id: get_date
