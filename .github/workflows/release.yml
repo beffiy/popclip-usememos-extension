@@ -1,0 +1,48 @@
+name: Create and Publish Popclip Extension
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'  # 如果需要 Node.js 环境
+
+    - name: Install Zip
+      run: sudo apt-get install zip -y
+
+    - name: Compress src folder
+      run: zip -r usememos.popclipext src
+
+    - name: Get current date and time
+      id: get_date
+      run: echo "RELEASE_DATE=$(date +'%Y%m%d-%H%M')" >> $GITHUB_ENV
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ env.RELEASE_DATE }}
+        release_name: Release ${{ env.RELEASE_DATE }}
+        draft: false
+        prerelease: false
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./usememos.popclipext 
+        asset_name: usememos.popclipext 
+        asset_content_type: application/zip
