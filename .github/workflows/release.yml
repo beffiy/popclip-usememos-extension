@@ -45,6 +45,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./usememos.popclipext 
-        asset_name: usememos.popclipext 
+        asset_path: ./usememos.popclipextz
+        asset_name: usememos.popclipextz
         asset_content_type: application/zip
