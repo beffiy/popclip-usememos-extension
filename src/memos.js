@@ -12,9 +12,9 @@ const headers = {
   Authorization: `Bearer ${access_token}`,
 };
 
-let content = "\n" + popclip.input.markdown.trim();
+let content = popclip.input.markdown.trim();
   if (popclip.options.sourceLink && popclip.context && popclip.context.browserUrl) {
-    content += `\n[${popclip.context.browserTitle || "Source"}](${popclip.context.browserUrl})`;
+    content += `[${popclip.context.browserTitle || "Source"}](${popclip.context.browserUrl})`;
   }
 
 const data = {
